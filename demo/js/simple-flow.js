@@ -23,8 +23,17 @@
 
             var that = this;
 
-            $(window).resize(function () {
-                that.drawLines();
+            // need to redraw after resize ends otherwise it can
+            // happen too quickly
+            $(window).resize(function() {
+               if(this.resizeTO) clearTimeout(this.resizeTO);
+               this.resizeTO = setTimeout(function() {
+                   $(this).trigger('resizeEnd');
+               }, 250);
+            });
+
+            $(window).bind('resizeEnd', function() {
+               that.drawLines();
             });
         },
 
