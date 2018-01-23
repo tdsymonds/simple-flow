@@ -45,6 +45,47 @@
       </div>
     </section> <!-- End of canvas -->
 
+    <!-- Create a second bootstrap canvas -->
+    <section class="container canvas2">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="object2">
+            <div class="centered">1</div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="object2">
+            <div class="centered">2</div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="object2">
+            <div class="centered">3</div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="object2">
+            <div class="centered">4</div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="object2">
+            <div class="centered">5</div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="object2">
+            <div class="centered">6</div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="object2">
+            <div class="centered">7</div>
+          </div>
+        </div>
+      </div>
+    </section> <!-- End of canvas -->
+
     <!-- Add jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Add simple flow -->
@@ -60,6 +101,10 @@
         }
         // connect objects with simple flow
         $('.object').SimpleFlow(settings);
+        $('.object2').SimpleFlow({
+          canvasElm: '.canvas2',
+          lineColour: '#d77e97'
+        });
       })
     </script>
   </body>

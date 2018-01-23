@@ -39,7 +39,7 @@
 
         drawLines: function() {
             // remove old svgs
-            $('svg.simple-flow-line').remove();
+            $(this.canvasElm + 'svg.simple-flow-line').remove();
 
             var $elements = $(this.element);
 
@@ -87,22 +87,33 @@
                         ',' + nextElmY;
                 }
 
+                var uuid = this.getUuid();
+
                 // create line svg
                 var line = '<svg class="simple-flow-line">' +
                     '<defs>' +
-                      '<marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5"' +
+                      '<marker id="arrowhead-' + uuid + '" viewBox="0 0 10 10" refX="8" refY="5"' +
                           'markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">' +
                         '<path d="M 0 0 L 10 5 L 0 10 z" stroke="none" fill="' + this.settings['lineColour'] + '"/>' +
                       '</marker>' +
                     '</defs>' +
                     '<path d="M' + coords +
                       '"style="fill:none;stroke:' + this.settings['lineColour'] + ';stroke-width:' + this.settings['lineWidth'] +
-                      ';marker-end:url(#arrowhead);" />' +
+                      ';marker-end:url(#arrowhead-' + uuid + ');" />' +
                     '</svg>';
 
                 // append to canvas
                 $(this.settings['canvasElm']).append(line);
             }
+        },
+        getUuid: function() {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                s4() + '-' + s4() + s4() + s4();
         }
     });
 

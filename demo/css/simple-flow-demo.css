@@ -1,4 +1,4 @@
-.object{
+.object, .object2{
   background:#91acb3;
   height: 100px;
   width:100%;
@@ -7,8 +7,18 @@
   color: #fff;
 }
 
+.object2{
+  background: #d77e97;
+}
+
 .centered{
   display:table-cell;
   vertical-align:middle;
   text-align:center;
+}
+
+/* custom canvas */
+.canvas2{
+  position:relative;
+  padding: 0 50px;
 }
