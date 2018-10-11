@@ -41,16 +41,29 @@
             // remove old svgs
             $(this.canvasElm + 'svg.simple-flow-line').remove();
 
+            var uuid = this.getUuid();
+
+            // define common elements
+            var line = '<svg class="simple-flow-defs">' +
+                '<defs>' +
+                  '<marker id="arrowhead-' + uuid + '" viewBox="0 0 10 10" refX="8" refY="5"' +
+                      'markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">' +
+                    '<path d="M 0 0 L 10 5 L 0 10 z" stroke="none" fill="' + this.settings['lineColour'] + '"/>' +
+                  '</marker>' +
+                '</defs>' +
+                '</svg>';
+            $(this.settings['canvasElm']).append(line);
+
             var $elements = $(this.element);
 
             for (var i = 0; i < $elements.length; i++){
                 var thisElm =  $elements.eq(i),
                     nextElm = $elements.eq(i+1);
-                this.drawLine(thisElm, nextElm);
+                this.drawLine(thisElm, nextElm, uuid);
             };
         },
 
-        drawLine: function(thisElm, nextElm){
+        drawLine: function(thisElm, nextElm, uuid){
             var thisElmParent = thisElm.parent(),
                 nextElmParent = nextElm.parent();
 
@@ -87,16 +100,8 @@
                         ',' + nextElmY;
                 }
 
-                var uuid = this.getUuid();
-
                 // create line svg
                 var line = '<svg class="simple-flow-line">' +
-                    '<defs>' +
-                      '<marker id="arrowhead-' + uuid + '" viewBox="0 0 10 10" refX="8" refY="5"' +
-                          'markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">' +
-                        '<path d="M 0 0 L 10 5 L 0 10 z" stroke="none" fill="' + this.settings['lineColour'] + '"/>' +
-                      '</marker>' +
-                    '</defs>' +
                     '<path d="M' + coords +
                       '"style="fill:none;stroke:' + this.settings['lineColour'] + ';stroke-width:' + this.settings['lineWidth'] +
                       ';marker-end:url(#arrowhead-' + uuid + ');" />' +
