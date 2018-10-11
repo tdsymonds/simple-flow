@@ -39,12 +39,12 @@
 
         drawLines: function() {
             // remove old svgs
-            $(this.canvasElm + 'svg.simple-flow-line').remove();
+            $(this.settings['canvasElm'] + ' ' + 'svg.simple-flow').remove()
 
             var uuid = this.getUuid();
 
             // define common elements
-            var line = '<svg class="simple-flow-defs">' +
+            var line = '<svg class="simple-flow simple-flow-defs">' +
                 '<defs>' +
                   '<marker id="arrowhead-' + uuid + '" viewBox="0 0 10 10" refX="8" refY="5"' +
                       'markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">' +
@@ -101,7 +101,7 @@
                 }
 
                 // create line svg
-                var line = '<svg class="simple-flow-line">' +
+                var line = '<svg class="simple-flow simple-flow-line">' +
                     '<path d="M' + coords +
                       '"style="fill:none;stroke:' + this.settings['lineColour'] + ';stroke-width:' + this.settings['lineWidth'] +
                       ';marker-end:url(#arrowhead-' + uuid + ');" />' +
